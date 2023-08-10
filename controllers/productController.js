@@ -22,7 +22,7 @@ export const createProductController = async (req, res) => {
     const { name, description, price, category, quantity, shipping } =
       req.fields;
     const { photo } = req.files;
-    //alidation
+    //validation
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is Required" });
@@ -67,9 +67,10 @@ export const getProductController = async (req, res) => {
     const products = await productModel
       .find({})
       .populate("category")
-      .select("-photo")
+
       .limit(12)
       .sort({ createdAt: -1 });
+    // console.log(products);
     res.status(200).send({
       success: true,
       counTotal: products.length,
@@ -90,7 +91,7 @@ export const getSingleProductController = async (req, res) => {
   try {
     const product = await productModel
       .findOne({ slug: req.params.slug })
-      .select("-photo")
+
       .populate("category");
     res.status(200).send({
       success: true,
@@ -239,7 +240,7 @@ export const productListController = async (req, res) => {
     const page = req.params.page ? req.params.page : 1;
     const products = await productModel
       .find({})
-      .select("-photo")
+
       .skip((page - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
@@ -289,7 +290,7 @@ export const realtedProductController = async (req, res) => {
         category: cid,
         _id: { $ne: pid },
       })
-      .select("-photo")
+
       .limit(3)
       .populate("category");
     res.status(200).send({

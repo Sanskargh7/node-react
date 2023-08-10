@@ -36,7 +36,7 @@ router.put(
   formidable(),
   updateProductController
 );
-
+// `/api/v1/product/product-photo/${p._id}`
 //get products
 router.get("/get-product", getProductController);
 

@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -30,10 +31,12 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: Number,
-      default: 0,
+      default: 1,
     },
   },
   { timestamps: true }
 );
+// 9833160647
 
+// 8960324714
 export default mongoose.model("users", userSchema);
