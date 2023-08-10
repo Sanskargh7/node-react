@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 // app.get("/", (req, res) => {
 //   res.send("<h1>Welcome to ecommerce app</h1>");
 // });
-app.use("/*", (req, res) => {
+app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
